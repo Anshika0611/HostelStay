@@ -1,0 +1,33 @@
+<%- layout('/layouts/boilerplate') %>
+<!-- ejs mate -->
+<body>
+  <br />
+  <h1>Here are all the places</h1>
+  <br />
+  <!-- <form method="get" action="/listing/new">
+        <button type="submit">
+            Create new Location
+        </button>
+    </form> -->
+  <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for(post of list){%>
+    <a href="/listing/<%=post.id%>" class="listing">
+      <div class="card">
+        <img
+          src="<%= post.image.url%>"
+          class="card-img-top"
+          alt="listing_images"
+          style="height: 20rem"
+        />
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <B><%= post.title %><br /></B>
+            &#x20b9; <%=post.price.toLocaleString('en-IN') %> /night
+          </p>
+        </div>
+      </div>
+    </a>
+    <%}%>
+  </div>
+</body>
