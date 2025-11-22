@@ -89,6 +89,15 @@ app.patch('/listing/:id',async(req,res)=>{
     let {id}=req.params
     let listing=req.body.listing
     // console.log(...req.body.listing);
+    if (listing.image && listing.image.trim() !== "") {
+    listing.image = {
+      filename: "listingimage",
+      url: listing.image
+    };
+  } else {
+    // If empty → keep existing image (don’t overwrite)
+    delete listing.image;
+  }
     await List.findByIdAndUpdate(id,listing)
     console.log('updated');
     res.redirect(`/listing/${id}`)
